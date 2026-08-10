@@ -54,7 +54,7 @@ uv tool install cookiecutter
 ### プロジェクトの生成
 
 ```bash
-cookiecutter gh:<user>/<repository>
+cookiecutter gh:sminamiafb9/pyproject-template
 ```
 
 プロジェクト名などを入力すると、プロジェクトが生成されます。

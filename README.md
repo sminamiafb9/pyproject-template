@@ -21,6 +21,8 @@ Pythonプロジェクトの開発に必要なツール・設定をあらかじ�
 | Lint / Format | Ruff |
 | Type Check | Pyright |
 | Test | pytest |
+| Test Coverage | pytest-cov |
+| Randomized Test Execution | pytest-randomly |
 | Task Runner | poethepoet |
 | Git Hook | pre-commit |
 
@@ -32,7 +34,7 @@ Pythonプロジェクトの開発に必要なツール・設定をあらかじ�
 - Python依存関係のインストール
 - pre-commit hookの登録
 
-また、Git commit時には `poe check` を実行し、Lint / Format / Type Check / Testをまとめて実行します。
+また、Git commit時には `poe check` を実行し、Lint / Format / Type Check / Test / Buildをまとめて実行します。
 
 ## 使い方
 
@@ -77,7 +79,7 @@ uv run pre-commit install
 
 ### Check
 
-Lint / Format / Type Check / Testをまとめて実行します。
+Lint / Format / Type Check / Test / Buildをまとめて実行します。
 
 ```bash
 uv run poe check
@@ -107,6 +109,18 @@ uv run poe typecheck
 uv run poe test
 ```
 
+`pytest-cov` によりパッケージのカバレッジを計測します。結果はターミナルに表示され、HTMLレポートは `htmlcov/index.html` に出力されます。
+
+`pytest-randomly` によりテストはランダムな順序で実行されます。順序に依存しないテストを維持してください。
+
+### Build
+
+```bash
+uv run poe build
+```
+
+ビルド成果物は `dist/` に出力されます。
+
 ## pre-commit
 
 Git commit時に `poe check` が自動的に実行されます。
@@ -120,7 +134,8 @@ uv run poe check
     ├── format
     ├── lint
     ├── typecheck
-    └── test
+    ├── test
+    └── build
 ```
 
 手動で実行する場合は、
@@ -187,6 +202,8 @@ RuffについてはDev Containerの設定からRuff拡張をインストール�
 | Ruff | Lint / Format |
 | Pyright | Type Check |
 | pytest | Test |
+| pytest-cov | Test Coverage |
+| pytest-randomly | Randomized Test Execution |
 | poethepoet | 開発コマンド管理 |
 | pre-commit | commit前のチェック |
 | Dev Container | 開発環境の提供 |

@@ -37,6 +37,8 @@ uv run <command>
 | Ruff | Lint / Format |
 | Pyright | Static Type Check |
 | pytest | Test Framework |
+| pytest-cov | Test Coverage Measurement |
+| pytest-randomly | Randomized Test Execution |
 | poethepoet | Development Task Runner |
 
 ---
@@ -65,6 +67,20 @@ uv run poe typecheck
 uv run poe test
 ```
 
+テスト実行時には `pytest-cov` により `{{cookiecutter.package_name}}` のカバレッジを計測します。結果はターミナルに表示され、HTML レポートは `htmlcov/index.html` に出力されます。
+
+`pytest-randomly` によりテストはランダムな順序で実行されます。順序に依存しないテストを維持してください。
+
+---
+
+#### Build
+
+```bash
+uv run poe build
+```
+
+ビルド成果物は `dist/` に出力されます。
+
 ---
 
 #### Task Runner
@@ -74,6 +90,6 @@ uv run poe test
 開発時に必要なコマンドを `pyproject.toml` に定義し、実行手順をコード化します。
 
 ```bash
-# Lint / Format / Type Check / Test を実行
+# Lint / Format / Type Check / Test / Build を実行
 uv run poe check
 ```

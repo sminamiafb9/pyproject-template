@@ -1,5 +1,5 @@
 {
-    "project_name": "sample-project",
+    "project_name": "sample-pyproject",
     "package_name": "sample_pyproject",
     "description": "A sample python project"
 }

@@ -6,9 +6,6 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
 
-[project.scripts]
-research_agent = "research_agent:main"
-
 [build-system]
 requires = ["uv_build>=0.12.1,<0.13.0"]
 build-backend = "uv_build"
@@ -20,6 +17,8 @@ dev = [
     "pre-commit>=4.6.1",
     "pyright>=1.1.411",
     "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pytest-randomly>=4.1.0",
     "ruff>=0.16.1",
 ]
 
@@ -27,6 +26,10 @@ dev = [
 [[tool.uv.index]]
 url = "https://pypi.flatt.tech/simple/"
 default = true
+
+
+[tool.uv.build-backend]
+include = ["src/{{cookiecutter.package_name}}/py.typed"]
 
 
 [tool.ruff]
@@ -66,7 +69,7 @@ combine-as-imports = true
 force-sort-within-sections = true
 
 known-first-party = [
-    "research_agent",
+    "{{cookiecutter.package_name}}",
 ]
 
 
@@ -77,6 +80,17 @@ line-ending = "lf"
 skip-magic-trailing-comma = false
 
 
+[tool.pytest.ini_options]
+addopts = [
+    "--cov={{cookiecutter.package_name}}",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+testpaths = [
+    "tests",
+]
+
+
 [tool.poe.tasks]
 lint = "ruff check ."
 format = [
@@ -85,6 +99,7 @@ format = [
 ]
 typecheck = "pyright"
 test = "pytest tests"
+build = "uv build"
 
 [tool.poe.tasks.check]
 sequence = [
@@ -92,4 +107,5 @@ sequence = [
     "format",
     "typecheck",
     "test",
+    "build",
 ]

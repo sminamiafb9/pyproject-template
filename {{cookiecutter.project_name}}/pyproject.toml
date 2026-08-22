@@ -23,6 +23,9 @@ dev = [
 ]
 
 
+[tool.uv]
+exclude-newer = "7 days"
+
 [[tool.uv.index]]
 url = "https://pypi.flatt.tech/simple/"
 default = true

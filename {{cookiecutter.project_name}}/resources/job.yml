@@ -1,0 +1,18 @@
+resources:
+  jobs:
+    {{cookiecutter.package_name}}:
+      name: {{cookiecutter.package_name}}
+
+      tasks:
+        - task_key: sample
+
+          notebook_task:
+            notebook_path: ../notebooks/sample.py
+          environment_key: default
+
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "6"
+            dependencies:
+              - ../dist/{{cookiecutter.package_name}}-0.0.1-py3-none-any.whl

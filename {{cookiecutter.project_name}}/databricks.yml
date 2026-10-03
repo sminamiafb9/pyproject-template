@@ -1,0 +1,10 @@
+bundle:
+  name: {{cookiecutter.package_name}}
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true

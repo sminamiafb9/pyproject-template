@@ -6,6 +6,7 @@
 
 - Python
 - uv
+- databricks (コマンドとvscode拡張)
 
 Python環境および依存管理には `uv` を利用する。
 
@@ -40,6 +41,7 @@ uv run <command>
 | pytest-cov | Test Coverage Measurement |
 | pytest-randomly | Randomized Test Execution |
 | poethepoet | Development Task Runner |
+| databricks-connect | Databricksクラスター接続・実行 |
 
 ---
 
@@ -92,4 +94,26 @@ uv run poe build
 ```bash
 # Lint / Format / Type Check / Test / Build を実行
 uv run poe check
+```
+
+---
+
+### Databricks連携
+
+- ローカル環境がdatabricks環境パッケージ群と一致している
+- vscodeのinteractiveモードでの開発 → deploy → job実行という流れを想定している
+- deploy/runをpoeタスクとして設定しており、以下のコマンドで実行できる
+
+```sh
+databricks auth login -p sandbox
+uv run poe bundle_deploy
+uv run poe bundle_run
+```
+
+#### ~/.databrickscfgの編集
+
+databricks-connect実行のため、DEFAULTプロファイルに以下を追記
+
+```toml
+serverless_compute_id = auto
 ```

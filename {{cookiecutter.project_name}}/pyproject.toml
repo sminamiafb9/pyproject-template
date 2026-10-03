@@ -364,6 +364,7 @@ sequence = [
 # for databricks
 [tool.poe.tasks.bundle_deploy]
 shell = """
+uv build
 databricks bundle validate -t $target
 databricks bundle deploy -t $target
 """
@@ -383,5 +384,5 @@ databricks bundle run -t $target $job
 
     [[tool.poe.tasks.bundle_run.args]]
     name = "job"
-    default = "learn_databricks_work"
+    default = "{{cookiecutter.package_name}}"
     options = ["-n", "--job-name"]

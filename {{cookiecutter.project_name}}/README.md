@@ -6,6 +6,7 @@
 
 - Python
 - uv
+- google-colab-cli
 
 Python環境および依存管理には `uv` を利用する。
 
@@ -40,6 +41,7 @@ uv run <command>
 | pytest-cov | Test Coverage Measurement |
 | pytest-randomly | Randomized Test Execution |
 | poethepoet | Development Task Runner |
+| google-colab-cli | Google Colab連携 |
 
 ---
 
@@ -92,4 +94,40 @@ uv run poe build
 ```bash
 # Lint / Format / Type Check / Test / Build を実行
 uv run poe check
+```
+
+---
+
+### Google Colab連携
+
+- colab cliを用いてローカル開発 → colabでの実行の流れを想定する
+- vm構築/ファイル転送/実行をpoeタスクとして設定しており、以下のコマンドで実行できる
+
+```sh
+# vmの起動とファイルの転送
+uv run poe colab_deploy
+
+# 実行
+uv run poe colab_run {path/to/py or ipynb}
+
+# 停止
+uv run poe colab_stop  
+```
+
+#### カーネルとして利用する
+
+- colabのVMで動作するjupyterにポートフォワーディングで接続させvscodeのinteractiveモードでのカーネルとして利用する
+
+```sh
+uv run poe colab_connect
+# ポートフォワーディング状態で待機するためターミナルを1プロセス使う
+```
+
+- 起動状態でvscodeのinteractiveモードのカーネル選択を行う
+
+```text
+1. カーネル選択
+2. 既存のjupyterサーバーを選択
+3. 127.0.0.1を選択
+4. カーネルを選択
 ```

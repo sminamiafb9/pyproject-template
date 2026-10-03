@@ -1,5 +1,5 @@
 {
-    "project_name": "sample-pyproject",
-    "package_name": "sample_pyproject",
-    "description": "A sample python project"
+    "project_name": "sample-colab-pyproject",
+    "package_name": "sample_colab_pyproject",
+    "description": "A sample colab python project"
 }

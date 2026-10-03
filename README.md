@@ -56,7 +56,7 @@ uv tool install cookiecutter
 ### プロジェクトの生成
 
 ```bash
-cookiecutter gh:sminamiafb9/pyproject-template
+cookiecutter gh:sminamiafb9/pyproject-template -c colab-template
 ```
 
 プロジェクト名などを入力すると、プロジェクトが生成されます。

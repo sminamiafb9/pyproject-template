@@ -118,25 +118,25 @@ sequence = [
 [tool.poe.tasks.colab_deploy]
 shell = """
     uv build &&
-    WHEEL=$(find dist -maxdepth 1 -name 'learn_colab_work-*.whl' -print -quit) &&
-    colab new -s learn_colab_work &&
+    WHEEL=$(find dist -maxdepth 1 -name '{{cookiecutter.package_name}}-*.whl' -print -quit) &&
+    colab new -s {{cookiecutter.package_name}} &&
     colab upload "$WHEEL" "lib/$(basename "$WHEEL")" &&
-    colab install -s learn_colab_work "lib/$(basename "$WHEEL")"
+    colab install -s {{cookiecutter.package_name}} "lib/$(basename "$WHEEL")"
 """
 
 [tool.poe.tasks.colab_run]
-shell = "colab exec -s learn_colab_work -f $file"
+shell = "colab exec -s {{cookiecutter.package_name}} -f $file"
     [[tool.poe.tasks.colab_run.args]]
     name = "file"
     positional = true
 
 [tool.poe.tasks.colab_stop]
-cmd = "colab stop -s learn_colab_work"
+cmd = "colab stop -s {{cookiecutter.package_name}}"
 
 
 [tool.poe.tasks.colab_connect]
 shell = """
-COLAB_IP=$(echo "hostname -I" | colab ssh -s learn_colab_work | sed 's/[[:space:]]*$//')
+COLAB_IP=$(echo "hostname -I" | colab ssh -s {{cookiecutter.package_name}} | sed 's/[[:space:]]*$//')
 
 echo ""
 echo "Colab IP: $COLAB_IP"
@@ -147,11 +147,11 @@ echo "  Server URL: http://127.0.0.1:8889"
 echo ""
 
 ssh \
-  -o 'ProxyCommand=colab ssh --proxy-mode -s learn_colab_work' \
+  -o 'ProxyCommand=colab ssh --proxy-mode -s {{cookiecutter.package_name}}' \
   -o StrictHostKeyChecking=no \
   -o UserKnownHostsFile=/dev/null \
   -o LogLevel=ERROR \
   -N \
   -L "8889:${COLAB_IP}:9000" \
-  root@learn_colab_work
+  root@{{cookiecutter.package_name}}
 """

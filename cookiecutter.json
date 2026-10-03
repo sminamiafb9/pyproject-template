@@ -1,5 +1,5 @@
 {
-    "project_name": "sample-pyproject",
-    "package_name": "sample_pyproject",
-    "description": "A sample python project"
+    "project_name": "sample-databricks-pyproject",
+    "package_name": "sample_databricks_pyproject",
+    "description": "A sample databricks python project"
 }

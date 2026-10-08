@@ -1,5 +1,6 @@
 {
     "project_name": "sample-databricks-pyproject",
     "package_name": "sample_databricks_pyproject",
-    "description": "A sample databricks python project"
+    "description": "A sample databricks python project",
+    "workspace_host": "https://dbc-xxxxxxx.databricks.com"
 }
